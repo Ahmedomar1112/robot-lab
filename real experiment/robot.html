@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 ساحة التفاعل — RobotLab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>🤖 ساحة التفاعل - RobotLab</h1>
+        <button class="back-btn" onclick="window.location.href='../index.html'">🏠 العودة للمختبر</button>
+    </header>
+
+    <main>
+        <!-- منطقة المحاكاة -->
+        <section class="simulator">
+            <div class="robot" id="robot">🤖</div>
+        </section>
+
+        <!-- لوحة التحكم -->
+        <aside class="control-panel">
+            <h2>لوحة التحكم</h2>
+
+            <div class="controls">
+                <div></div>
+                <button id="up">⬆️</button>
+                <div></div>
+                <button id="right">➡️</button>
+                <div></div>
+                <button id="left">⬅️</button>
+                <div></div>
+                <button id="down">⬇️</button>
+                <div></div>
+            </div>
+
+            <div class="settings">
+                <h3>⚙️ إعدادات السرعة</h3>
+                <label for="speed">السرعة</label>
+                <input type="range" id="speed" min="1" max="10" value="5">
+            </div>
+
+            <h3>💻 جرب كود بسيط</h3>
+            <textarea class="code-area" id="codeArea">move_forward()
+turn_left()
+move_forward()</textarea>
+            <button class="run-btn" id="runCode">تشغيل الكود</button>
+        </aside>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+
+</html>

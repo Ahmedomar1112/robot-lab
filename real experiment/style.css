@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    background-color: #1E1E2F;
+    color: #fff;
+    overflow: hidden;
+}
+
+header {
+    background: #2A2A3F;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #FFD700;
+}
+
+header h1 {
+    font-size: 1.6rem;
+    color: #FFD700;
+}
+
+main {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+/* منطقة المحاكاة */
+.simulator {
+    flex: 2;
+    background: radial-gradient(circle at center, #25253a, #1a1a28);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.robot {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(145deg, #FFD700, #caa400);
+    border-radius: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.2s;
+    font-size: 2rem;
+}
+
+/* لوحة التحكم */
+.control-panel {
+    flex: 1;
+    background: #2A2A3F;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-left: 2px solid #FFD700;
+}
+
+.control-panel h2 {
+    color: #FFD700;
+    margin: 0;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    grid-template-rows: repeat(3, 60px);
+    gap: 8px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.controls button {
+    background: #FFD700;
+    color: #1E1E2F;
+    border: none;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.controls button:hover {
+    background: #e0c100;
+    transform: scale(1.1);
+}
+
+.settings label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.settings input[type="range"] {
+    width: 100%;
+}
+
+.code-area {
+    background: #1E1E2F;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 8px;
+    padding: 10px;
+    height: 80px;
+    color: #FFD700;
+    font-family: monospace;
+    resize: none;
+}
+
+
+.run-btn {
+    background: #FFD700;
+    color: #1E1E2F;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: 0.3s ease;
+    margin-top: -5px;
+    /* رفع بسيط */
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.run-btn:hover {
+    background: #e0c100;
+    transform: scale(1.05);
+}
+
+.back-btn {
+    background: transparent;
+    border: 1px solid #FFD700;
+    color: #FFD700;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #FFD700;
+    color: #1E1E2F;
+}

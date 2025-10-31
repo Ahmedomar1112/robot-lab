@@ -1,0 +1,1104 @@
+/* 🌌 إعدادات عامة */
+:root {
+    --bg: #0b111a;
+    --card: #111827;
+    --text: #ffffff;
+    --muted: #9ca3af;
+    --accent: #ffd700;
+    --accent-glow: rgba(255, 215, 0, 0.15);
+    --border: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+canvas#background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 20%, #1a2332, #0b111a);
+}
+
+/* 🌟 الهيدر */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: rgba(10, 15, 25, 0.6);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+header.scrolled {
+    background: rgba(11, 17, 26, 0.95);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+}
+
+.nav-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 14px 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 👾 الشعار */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand .logo {
+    width: 48px;
+    height: 48px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 24px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    box-shadow: 0 0 15px var(--accent-glow);
+    transition: transform 0.4s ease;
+}
+
+.brand .logo:hover {
+    transform: rotate(10deg) scale(1.1);
+}
+
+.brand h1 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* 🧭 القوائم */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    transition: 0.3s;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    font-size: 15px;
+    letter-spacing: 0.4px;
+    transition: color 0.3s ease;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+}
+
+nav a:hover {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+#themeToggle {
+    font-size: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--accent);
+    transition: transform 0.3s ease;
+}
+
+#themeToggle:hover {
+    transform: scale(1.2);
+}
+
+/* 📱 زر القائمة للموبايل */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 26px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: all 0.4s ease;
+}
+
+/* عند فتح المنيو */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* 🎯 الأزرار */
+.btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.btn.ghost {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+.btn.ghost:hover {
+    background: var(--accent);
+    color: #000;
+}
+
+#dragger {
+    touch-action: none;
+    user-select: none;
+    cursor: grab;
+    transition: transform 0.1s ease;
+}
+
+#dragger:active {
+    cursor: grabbing;
+}
+
+/* 📦 الأقسام العامة */
+section {
+    padding: 100px 24px;
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+}
+
+/* 🧱 البطاقات */
+.card {
+    background: var(--card);
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transition: 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px var(--accent-glow);
+}
+
+/* 🔢 الإحصائيات */
+.stats {
+    display: flex;
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.stat {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+}
+
+.stat .num {
+    font-size: 32px;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* 🧠 المشاريع */
+.grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+article.card {
+    cursor: pointer;
+}
+
+article.card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* 🧰 الأدوات */
+.langs {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.lang {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.lang:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: scale(1.05);
+}
+
+/* 📰 المقالات */
+.article-preview {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: 0.3s;
+}
+
+.article-preview:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateX(-4px);
+}
+
+.article-preview .icon {
+    font-size: 24px;
+}
+
+.carousel-wrap {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    perspective: 1000px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel {
+    position: relative;
+    width: 70%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center center;
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.5;
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform, opacity;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.slide img {
+    max-height: 500px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.slide.active {
+    transform: translate(-50%, -50%) scale(1) translateZ(120px);
+    opacity: 1;
+    z-index: 300;
+    
+}
+
+.slide.prev {
+    transform: translate(-110%, -50%) rotateY(25deg) scale(0.85);
+    opacity: 0.7;
+    z-index: 2;
+}
+
+.slide.next {
+    transform: translate(10%, -50%) rotateY(-25deg) scale(0.85);
+    opacity: 0.7;
+    z-index: 2;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.12);
+    border: 2px solid var(--accent, #FFD700);
+    color: var(--accent, #FFD700);
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 5;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-btn:hover {
+    background: var(--accent, #FFD700);
+    color: #1E1E2F;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 12px var(--accent, #FFD700);
+}
+
+.carousel-btn.prev {
+    left: 5%;
+}
+
+.carousel-btn.next {
+    right: 5%;
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        width: 90%;
+    }
+
+    .carousel-wrap {
+        height: 320px;
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+}
+
+
+/* ===== Expanded Image View ===== */
+.expanded-view {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.expanded-view.show {
+    display: flex;
+    opacity: 1;
+}
+
+.expanded-content {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    background: #1E1E2F;
+    border-radius: 20px;
+    padding: 30px 50px;
+    gap: 60px;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+    max-width: 90%;
+    max-height: 85%;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    transform: translateY(40px);
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+/* حركة الظهور */
+.expanded-view.show .expanded-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.expanded-content img {
+    width: 420px;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.35);
+    object-fit: contain;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+/* تكبير بسيط عند المرور على الصورة */
+.expanded-content img:hover {
+    transform: scale(1.05);
+}
+
+.expanded-text {
+    flex: 1;
+    text-align: right;
+    /* علشان النص يبقى على الشمال */
+}
+
+.expanded-text h3 {
+    color: #FFD700;
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.expanded-text p {
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: transparent;
+    color: #FFD700;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.close-btn:hover {
+    transform: scale(1.2);
+    color: #fff;
+}
+
+
+
+/* 💬 التواصل */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    resize: none;
+    outline: none;
+    transition: 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* 📜 الفوتر */
+footer {
+    text-align: center;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    background: rgba(11, 17, 26, 0.9);
+    margin-top: 80px;
+    color: var(--muted);
+}
+
+/* 💫 الأنيميشنات */
+.js-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+.js-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ✨ حركة bounce */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.bounce {
+    animation: bounceIn 1s ease forwards;
+}
+
+/* 🌗 ثيم الوضع الفاتح */
+body.light {
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #111;
+    --muted: #555;
+    --accent: #d4af37;
+    --border: rgba(0, 0, 0, 0.1);
+}
+
+body.light header {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid var(--border);
+}
+
+/* 🌈 استجابة للشاشات الصغيرة */
+@media (max-width: 768px) {
+    nav ul {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 220px;
+        background: rgba(10, 15, 25, 0.95);
+        backdrop-filter: blur(8px);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        transform: translateY(-20px);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.4s ease;
+    }
+
+    nav ul.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+}
+
+/* ===== Robot Assistant (metallic) ===== */
+.robot-assistant {
+    position: fixed;
+    right: 28px;
+    bottom: 28px;
+    z-index: 3000;
+    /* فوق الـcanvas */
+    display: flex;
+    align-items: flex-end;
+    pointer-events: none;
+    /* معظم العناصر لا تستقبل pointer إلا ما نريده */
+    font-family: 'Cairo', sans-serif;
+}
+
+/* wrapper يسمح بالتفاعل داخل الروبوت */
+.robot-wrapper {
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transform-origin: center;
+}
+
+/* sound toggle */
+.robot-sound-btn {
+    position: absolute;
+    top: -42px;
+    right: 0;
+    background: linear-gradient(180deg, #ffd54a, #e6b800);
+    border: none;
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* robot base */
+.robot {
+    width: 120px;
+    height: 160px;
+    position: relative;
+    transform: translateY(0);
+    transition: transform .35s ease, box-shadow .25s;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+/* antenna */
+.antenna {
+    position: absolute;
+    top: -26px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 26px;
+    background: linear-gradient(180deg, #9e9e9e, #555);
+    border-radius: 4px;
+}
+
+.antenna::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #00d9ff, #007b9a);
+    border-radius: 50%;
+    box-shadow: 0 0 14px rgba(0, 217, 255, 0.6);
+    animation: antenna-pulse 2s infinite;
+}
+
+/* head */
+.head {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92px;
+    height: 60px;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #1b2733, #0b1116);
+    border: 2px solid rgba(255, 255, 255, 0.03);
+    overflow: visible;
+    box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.02);
+}
+
+/* visor where eyes sit */
+.visor {
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    right: 8px;
+    height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #081018, #0e2530);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    box-shadow: inset 0 -4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* eyes */
+.eye {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #bff6ff 20%, #00d9ff 60%, #007b9a 100%);
+    box-shadow: 0 0 12px rgba(0, 217, 255, 0.6);
+    transform-origin: center;
+    transition: transform .12s linear, box-shadow .2s;
+}
+
+/* jaw / mouth LED */
+.jaw {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 10px;
+    background: linear-gradient(90deg, #03212a, #004e5b);
+    border-radius: 6px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+}
+
+/* body */
+.body {
+    position: absolute;
+    top: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 82px;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #151823, #1b2430);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.02), 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* decorative panel + glow sweep */
+.panel {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    width: 76px;
+    height: 40px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #07161b, #0b2a33);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+.panel::after {
+    content: '';
+    position: absolute;
+    left: -40%;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+    transform: skewX(-20deg);
+    animation: sweep 3.2s ease-in-out infinite;
+}
+
+/* arms */
+.arm {
+    position: absolute;
+    top: 70px;
+    width: 18px;
+    height: 44px;
+    background: linear-gradient(180deg, #222a33, #0f1720);
+    border-radius: 8px;
+    box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.02);
+}
+
+.left-arm {
+    left: -8px;
+    transform-origin: top right;
+    animation: armSwingLeft 2.6s ease-in-out infinite;
+}
+
+.right-arm {
+    right: -8px;
+    transform-origin: top left;
+    animation: armSwingRight 2.6s ease-in-out infinite;
+}
+
+/* legs */
+.leg {
+    position: absolute;
+    bottom: -10px;
+    width: 18px;
+    height: 22px;
+    background: linear-gradient(180deg, #0e151b, #071018);
+    border-radius: 6px;
+}
+
+.left-leg {
+    left: 22px;
+}
+
+.right-leg {
+    right: 22px;
+}
+
+/* bubble */
+.robot-bubble {
+    position: absolute;
+    right: 130px;
+    bottom: 60px;
+    /* 👇 خليك تستخدم max-width بدل width علشان تتكيف مع حجم النص */
+    width: 250px;
+    background: linear-gradient(180deg, rgba(2, 6, 23, 0.85), rgba(4, 14, 20, 0.9));
+    border: 1px solid rgba(79, 195, 247, 0.12);
+    padding: 16px 20px;
+    /* 👈 زوّد شوية padding */
+    border-radius: 16px;
+    /* 👈 شكل أنعم */
+    color: #d4eef7;
+    box-shadow: 0 12px 30px rgba(2, 6, 23, 0.6);
+    font-size: 16px;
+    /* 👈 تكبير الخط */
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(10px) scale(.98);
+    transition: all .45s cubic-bezier(.2, .9, .2, 1);
+    /* 👈 حركة أنعم */
+    pointer-events: none;
+    white-space: normal;
+    /* 👈 مهم علشان الكلام ينزل سطرين لو طويل */
+    word-wrap: break-word;
+    /* 👈 يكسر الكلمة الطويلة */
+}
+
+/* bubble visible */
+.robot-bubble.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* hover / focus micro interaction */
+.robot:active,
+.robot:focus {
+    transform: translateY(-4px) scale(1.02);
+}
+
+/* keyframes */
+@keyframes antenna-pulse {
+    0% {
+        transform: translateX(-50%) scale(1);
+    }
+
+    50% {
+        transform: translateX(-50%) scale(1.2);
+    }
+
+    100% {
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+@keyframes sweep {
+    0% {
+        left: -40%
+    }
+
+    50% {
+        left: 140%
+    }
+
+    100% {
+        left: -40%
+    }
+}
+
+@keyframes armSwingLeft {
+
+    0%,
+    100% {
+        transform: rotate(0deg)
+    }
+
+    50% {
+        transform: rotate(-12deg)
+    }
+}
+
+@keyframes armSwingRight {
+
+    0%,
+    100% {
+        transform: rotate(0deg)
+    }
+
+    50% {
+        transform: rotate(12deg)
+    }
+}
+
+/* responsive smaller screens */
+@media (max-width:720px) {
+    .robot-bubble {
+        right: 100px;
+        bottom: 70px;
+        max-width: 210px;
+        font-size: 13px;
+    }
+
+    .robot {
+        transform: scale(.9);
+    }
+
+    .robot-assistant {
+        right: 14px;
+        bottom: 14px;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 5000;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--card);
+    color: var(--text);
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 800px;
+    /* width: 90%; */
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+}
+
+#modalBody{
+    padding: 30px;
+    gap: 20px;
+}
+
+#modalTitle{
+    text-align: center;
+}
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 400px;
+    perspective: 1000px;
+    border-radius: 12px;
+}
+
+.carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 1s ease;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    position: relative;
+    transform: scale(0.85) rotateY(15deg);
+    opacity: 0.6;
+    transition: all 0.8s ease;
+}
+
+.carousel-slide.active {
+    transform: scale(1) rotateY(0deg);
+    opacity: 1;
+    z-index: 2;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* أزرار التنقل */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: #fff;
+    font-size: 28px;
+    padding: 8px 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 5;
+    transition: background 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+/* النقاط أسفل الصور */
+.carousel-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+}
+
+.carousel-indicators div {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.carousel-indicators div.active {
+    background: #FFD700;
+}
+
+/* حركة دخول */
+.js-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+.js-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
