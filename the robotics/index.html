@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RobotLab — عالم الروبوتات المتحرك 🤖</title>
+    <meta name="description"
+        content="موقع تعليمي عن الروبوتات مع أمثلة عملية، مشاريع، ومعرض تفاعلي، يحتوي على تأثيرات JavaScript متقدمة." />
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="background"></canvas>
+
+    <!-- ROBOT ASSISTANT (Metallic) -->
+    <div id="robot-assistant" class="robot-assistant" role="dialog" aria-live="polite" aria-label="مساعد روبوتي">
+        <div class="robot-wrapper">
+
+            <button id="robot-toggle-sound" class="robot-sound-btn" aria-pressed="false"
+                title="كتم/تشغيل الروبوت">🔊</button>
+
+            <div class="robot" aria-hidden="false" tabindex="0">
+                <div class="antenna" aria-hidden="true"></div>
+
+                <div class="head">
+                    <div class="visor">
+                        <div class="eye left" data-eye="left"></div>
+                        <div class="eye right" data-eye="right"></div>
+                    </div>
+                    <div class="jaw"></div>
+                </div>
+
+                <div class="body">
+                    <div class="panel"></div>
+                    <div class="arm left-arm" aria-hidden="true"></div>
+                    <div class="arm right-arm" aria-hidden="true"></div>
+                </div>
+
+                <div class="leg left-leg" aria-hidden="true"></div>
+                <div class="leg right-leg" aria-hidden="true"></div>
+            </div>
+
+            <div id="robot-bubble" class="robot-bubble" role="status" aria-live="polite"></div>
+
+        </div>
+    </div>
+
+
+
+    <header>
+        <div class="nav-inner">
+            <div class="brand">
+                <button id="themeToggle" class="btn ghost" style="font-size: 20px;">☀️</button>
+                <div class="logo">R</div>
+                <div>
+                    <h1>RobotLab</h1>
+                    <small style="color:var(--muted)">عالم الروبوتات التعليمي</small>
+                </div>
+            </div>
+
+            <nav id="navbar">
+                <ul class="nav-links">
+                    <li><a href="#intro">مقدمة</a></li>
+                    <li><a href="#projects">مشاريع</a></li>
+                    <li><a href="#tools">أدوات</a></li>
+                    <li><a href="#articles">أخبار</a></li>
+                    <li><a href="#gallery">معرض</a></li>
+                    <li><a href="#learn">تعلم</a></li>
+                    <li><a href="#contact">تواصل</a></li>
+                </ul>
+                <div class="menu-toggle" id="menuToggle">☰</div>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+        <section id="intro" class="hero js-scroll">
+            <div class="hero-card">
+                <h2>مستقبلك في بناء وبرمجة الروبوتات</h2>
+                <p>هنا هتلاقي مصادر، مشاريع جاهزة خطوة بخطوة، وشروحات عملية للمتحكمات والمستشعرات.
+                </p>
+
+                <div class="cta-row">
+                    <button class="btn" id="get-started">ابدأ الآن</button>
+                    <button class="btn ghost" id="open-playground">ساحة التفاعل</button>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="num" data-target="120">0</div>
+                        <small>مشروع جاهز</small>
+                    </div>
+                    <div class="stat">
+                        <div class="num" data-target="450">0</div>
+                        <small>دقيقة تعليمية</small>
+                    </div>
+                    <div class="stat">
+                        <div class="num" data-target="75">0</div>
+                        <small>مستشعرات مدعومة</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card js-scroll" style="padding:18px;align-self:start">
+                <h3>مختبر تجريبي</h3>
+                <p style="color:var(--muted)">تقدر تسحب الروبوت وتجرّب أكتر من صيغة حركة. جرب اسحب الدائرة تحت.</p>
+
+                <div style="display:flex;gap:12px;align-items:center;margin-top:12px">
+                    <div id="dragger"
+                        style="width:120px;height:120px;border-radius:12px;background:linear-gradient(180deg,#083044,#04243a);display:grid;place-items:center;cursor:grab;border:2px solid rgba(255,255,255,0.03)">
+                        🤖</div>
+                    <div style="flex:1">
+                        <p style="color:var(--muted);font-size:14px">سحب للعناصر يُظهر أدوات تحكم إضافية وتجارب
+                            فيزيائية.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="js-scroll">
+            <div class="card">
+                <h2>مشاريع جاهزة</h2>
+                <p style="color:var(--muted)">ابدأ بالمشروعات التالية واطّلع على المكونات والتعليمات.
+                </p>
+
+                <div class="grid">
+                    <article class="card">
+                        <h3>متتبع الخط</h3>
+                        <p style="color:var(--muted)">Arduino + مستشعر IR — مناسب للمبتدئين.</p>
+                        <div style="display:flex;gap:8px;margin-top:12px">
+                            <button class="btn" data-proj="line">التفاصيل</button>
+                            <button class="btn ghost" data-proj="line-demo">تشغيل تجريبي</button>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <h3>ذراع روبوتية</h3>
+                        <p style="color:var(--muted)">عدة محركات سيرفو للتحكم في 4 درجات حرية.</p>
+                        <div style="display:flex;gap:8px;margin-top:12px">
+                            <button class="btn" data-proj="arm">التفاصيل</button>
+                            <button class="btn ghost" data-proj="arm-demo">تشغيل تجريبي</button>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <h3>روبوت IoT</h3>
+                        <p style="color:var(--muted)">ESP32 + تحكم عبر الشبكة.</p>
+                        <div style="display:flex;gap:8px;margin-top:12px">
+                            <button class="btn" data-proj="iot">التفاصيل</button>
+                            <button class="btn ghost" data-proj="iot-demo">تشغيل تجريبي</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools" class="js-scroll">
+            <div class="card">
+                <h2>الأدوات والمكونات</h2>
+                <p style="color:var(--muted)">لوحة تجارب، أسلاك، محركات، مستشعرات، ومصادر طاقة.</p>
+
+                <div class="langs" id="lang-list">
+                    <div class="lang" data-lang="python">Python</div>
+                    <div class="lang" data-lang="cpp">C/C++</div>
+                    <div class="lang" data-lang="esp">ESP32</div>
+                    <div class="lang" data-lang="firmware">Firmware</div>
+                </div>
+
+                <div id="lang-details"
+                    style="margin-top:12px;padding:12px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)">
+                    اختر لغة لتظهر التفاصيل هنا.
+                </div>
+            </div>
+        </section>
+
+        <section id="articles" class="js-scroll">
+            <div class="card">
+                <h2>مقالات وأخبار الروبوتات 📰</h2>
+                <p style="color:var(--muted)">آخر التحديثات في عالم الذكاء الاصطناعي والمكونات الجديدة.</p>
+
+                <div style="margin-top: 18px">
+                    <div class="article-preview">
+                        <span class="icon">✨</span>
+                        <div>
+                            <h4 style="margin: 0; color: #fff;">مراجعة: متحكم Raspberry Pi 5 الجديد</h4>
+                            <small style="color:var(--muted)">نشر في 10 أكتوبر 2025 - 5 دقائق قراءة</small>
+                        </div>
+                    </div>
+                    <div class="article-preview">
+                        <span class="icon">🚀</span>
+                        <div>
+                            <h4 style="margin: 0; color: #fff;">أفضل 5 مستشعرات للمبتدئين في الروبوتات</h4>
+                            <small style="color:var(--muted)">نشر في 15 سبتمبر 2025 - 7 دقائق قراءة</small>
+                        </div>
+                    </div>
+                    <div class="article-preview">
+                        <span class="icon">🧠</span>
+                        <div>
+                            <h4 style="margin: 0; color: #fff;">دمج نماذج الذكاء الاصطناعي في مشاريع Arduino</h4>
+                            <small style="color:var(--muted)">نشر في 20 أغسطس 2025 - 12 دقيقة قراءة</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="gallery" class="js-scroll">
+            <div class="card">
+                <h2>معرض صور وتجارب</h2>
+        
+                <div class="carousel-wrap">
+                    <div class="carousel" id="carousel3D">
+                        <div class="slide active">
+                            <img src="images/pngtree-animated-android-robot-png-image_13218660.png" alt="robot">
+                        </div>
+                        <div class="slide">
+                            <img src="images/pngtree-cute-blue-robot-giving-thumbs-up-3d-gesturing-eyes-funny-photo-image_39687748.jpg"
+                                alt="robot">
+                        </div>
+                        <div class="slide">
+                            <img src="images/pngtree-red-robot-with-different-parts-on-it-is-sitting-image_2666661.jpg"
+                                alt="robot">
+                        </div>
+                        <div class="slide active">
+                            <img src="images/pngtree-animated-android-robot-png-image_13218660.png" alt="robot">
+                        </div>
+                        <div class="slide">
+                            <img src="images/pngtree-cute-blue-robot-giving-thumbs-up-3d-gesturing-eyes-funny-photo-image_39687748.jpg"
+                                alt="robot">
+                        </div>
+                        <div class="slide">
+                            <img src="images/pngtree-red-robot-with-different-parts-on-it-is-sitting-image_2666661.jpg"
+                                alt="robot">
+                        </div>
+                    </div>
+        
+                    <button class="carousel-btn prev" id="prevBtn">❮</button>
+                    <button class="carousel-btn next" id="nextBtn">❯</button>
+                </div>
+            </div>
+        </section>
+        <!-- Expanded View for Image Click -->
+        <div id="expandedView" class="expanded-view">
+            <div class="expanded-content">
+                <div class="expanded-text">
+                    <h3 id="expandedTitle">عنوان الصورة</h3>
+                    <p id="expandedDesc">وصف بسيط عن الصورة المختارة يظهر هنا.</p>
+                </div>
+                <img id="expandedImg" src="" alt="Expanded Image">
+                <button id="closeExpanded" class="close-btn">✖</button>
+            </div>
+        </div>
+
+
+
+
+        <section id="learn" class="js-scroll">
+            <div class="card">
+                <h2>ابدأ التعلم</h2>
+                <p style="color:var(--muted)">نصائح سريعة، دورات، ومقالات مختصرة.</p>
+
+                <div class="grid" style="margin-top:12px">
+                    <div class="card">دورة Arduino — 4 أسابيع</div>
+                    <div class="card">مبادئ التحكم الآلي</div>
+                    <div class="card">مشروع: ذراع روبوتية</div>
+                    <div class="card">البرمجة بلغة Python للروبوتات</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="js-scroll">
+            <div class="card">
+                <h2>تواصل معنا 📧</h2>
+                <p style="color:var(--muted)">للاستفسارات، الشراكات، أو اقتراح مشاريع جديدة.</p>
+
+                <form class="contact-form" style="margin-top:18px">
+                    <input type="text" placeholder="الاسم الكامل" required>
+                    <input type="email" placeholder="البريد الإلكتروني" required>
+                    <textarea placeholder="رسالتك..." rows="5" required></textarea>
+                    <button class="btn" type="submit">إرسال الرسالة</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        &copy; 2025 RobotLab — كل الحقوق محفوظة
+    </footer>
+
+    <!-- Modal Project Details -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <button id="closeModal" class="close-btn">&times;</button>
+            <h2 id="modalTitle">عنوان المشروع</h2>
+            <p id="modalBody">تفاصيل المشروع ستظهر هنا</p>
+        </div>
+    </div>
+
+
+    <script src="style.js"></script>
+</body>
+
+</html>
